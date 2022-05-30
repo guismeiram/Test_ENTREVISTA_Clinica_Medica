@@ -15,7 +15,6 @@ public class DetalhesDoConsultorioDTO {
 	private String nomePaciente;
 	private String especialidadeMedica;
 	private String numeroConsultorio;
-	private List<PacienteDTO> paciente;
 	private List<MedicoDTO> medico;
 	
 	

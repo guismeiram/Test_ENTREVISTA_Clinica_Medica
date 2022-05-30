@@ -33,6 +33,4 @@ public class Medico {
 	private String nomeMedico;
 	private String crm;
 	private int idade;
-	@ManyToOne
-	private Consultorio consultorio; 
 }

@@ -1,6 +1,5 @@
 package br.com.ClinicaMedicaTest.form;
 
-import java.time.LocalDateTime;
 
 import br.com.ClinicaMedicaTest.model.Consultorio;
 import br.com.ClinicaMedicaTest.repository.ConsultorioRepository;

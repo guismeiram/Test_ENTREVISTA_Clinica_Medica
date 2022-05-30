@@ -17,7 +17,6 @@ import br.com.ClinicaMedicaTest.form.ConsultorioFORM;
 import br.com.ClinicaMedicaTest.model.Consultorio;
 import br.com.ClinicaMedicaTest.repository.ConsultorioRepository;
 import br.com.ClinicaMedicaTest.repository.MedicoRepository;
-import br.com.ClinicaMedicaTest.repository.PacienteRepository;
 
 @RestController
 @RequestMapping("/consultorio")
@@ -26,8 +25,6 @@ public class ConsultorioController {
 	@Autowired
 	private ConsultorioRepository consultorioRepository;
 	@Autowired
-	private PacienteRepository pacienteRepository;
-	@Autowired
 	private MedicoRepository medicoRepository;
 	
 
@@ -35,7 +32,7 @@ public class ConsultorioController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<ConsultorioDTO> cadastrar(@RequestBody ConsultorioFORM form, UriComponentsBuilder uriBuilder) {
-		Consultorio consultorio = form.converter(consultorioRepository);
+		Consultorio consultorio = form.converter(medicoRepository);
 		consultorioRepository.save(consultorio);
 		
 		URI uri = uriBuilder.path("/consultorios/{id}").buildAndExpand(consultorio.getId()).toUri();
