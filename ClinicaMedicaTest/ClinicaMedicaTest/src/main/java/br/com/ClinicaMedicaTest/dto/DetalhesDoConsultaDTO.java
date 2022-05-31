@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 
 
-public class DetalhesDoConsultorioDTO {
+public class DetalhesDoConsultaDTO {
 	private Long id;
 	private String nomeMedico;
 	private String crm;
@@ -15,10 +15,9 @@ public class DetalhesDoConsultorioDTO {
 	private String nomePaciente;
 	private String especialidadeMedica;
 	private String numeroConsultorio;
-	private List<MedicoDTO> medico;
 	
 	
-	/*public DetalhesDoConsultorioDTO(Consultorio consultorio) {
+	/*public DetalhesDoConsultaDTO(Consultorio consultorio) {
 		this.id = consultorio.getId();
 		this.nomeMedico = consultorio.getMedico().getNomeMedico().;
 		this.crm = consultorio.getMedico();

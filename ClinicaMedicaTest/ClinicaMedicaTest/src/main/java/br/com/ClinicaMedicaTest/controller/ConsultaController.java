@@ -12,31 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.ClinicaMedicaTest.dto.ConsultorioDTO;
-import br.com.ClinicaMedicaTest.form.ConsultorioFORM;
+import br.com.ClinicaMedicaTest.dto.ConsultaDTO;
+import br.com.ClinicaMedicaTest.form.ConsultaFORM;
+import br.com.ClinicaMedicaTest.model.Consulta;
 import br.com.ClinicaMedicaTest.model.Consultorio;
+import br.com.ClinicaMedicaTest.repository.ConsultaRepository;
 import br.com.ClinicaMedicaTest.repository.ConsultorioRepository;
-import br.com.ClinicaMedicaTest.repository.MedicoRepository;
+import br.com.ClinicaMedicaTest.repository.PessoaRepository;
 
 @RestController
 @RequestMapping("/consultorio")
-public class ConsultorioController {
+public class ConsultaController {
 
 	@Autowired
 	private ConsultorioRepository consultorioRepository;
 	@Autowired
-	private MedicoRepository medicoRepository;
+	private PessoaRepository pessoaRepository;
+	@Autowired
+	private ConsultaRepository consultaRepository;
 	
-
 	//create
 	@PostMapping
 	@Transactional
-	public ResponseEntity<ConsultorioDTO> cadastrar(@RequestBody ConsultorioFORM form, UriComponentsBuilder uriBuilder) {
-		Consultorio consultorio = form.converter(medicoRepository);
-		consultorioRepository.save(consultorio);
+	public ResponseEntity<ConsultaDTO> cadastrar(@RequestBody ConsultaFORM form, UriComponentsBuilder uriBuilder) {
+		Consulta consulta = form.converter(pessoaRepository, consultorioRepository);
+		consultaRepository.save(consulta);
 		
-		URI uri = uriBuilder.path("/consultorios/{id}").buildAndExpand(consultorio.getId()).toUri();
-		return ResponseEntity.created(uri).body(new ConsultorioDTO(consultorio));
+		URI uri = uriBuilder.path("/consultorios/{id}").buildAndExpand(consulta.getId()).toUri();
+		return ResponseEntity.created(uri).body(new ConsultaDTO(consulta));
 	}
     
 	
