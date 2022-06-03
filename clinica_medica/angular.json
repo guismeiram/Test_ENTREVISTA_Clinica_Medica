@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "teste_clinica": {
+    "clinica_medica": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/teste_clinica",
+            "outputPath": "dist/clinica_medica",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,7 +31,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -73,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "teste_clinica:build:production"
+              "browserTarget": "clinica_medica:build:production"
             },
             "development": {
-              "browserTarget": "teste_clinica:build:development"
+              "browserTarget": "clinica_medica:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "teste_clinica:build"
+            "browserTarget": "clinica_medica:build"
           }
         },
         "test": {
@@ -100,7 +99,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -109,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "teste_clinica"
+  "defaultProject": "clinica_medica"
 }
