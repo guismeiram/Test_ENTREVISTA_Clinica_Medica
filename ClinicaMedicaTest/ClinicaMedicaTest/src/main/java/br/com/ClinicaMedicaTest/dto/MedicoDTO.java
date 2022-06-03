@@ -1,7 +1,6 @@
 package br.com.ClinicaMedicaTest.dto;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 
 import org.modelmapper.ModelMapper;
@@ -11,39 +10,41 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import br.com.ClinicaMedicaTest.model.Consulta;
-import br.com.ClinicaMedicaTest.model.Consultorio;
+import br.com.ClinicaMedicaTest.model.Medico;
 import lombok.AllArgsConstructor;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@JsonPropertyOrder({"id","numeroConsultorio","dataHoraConsulta"})
+
+@JsonPropertyOrder({"id","crm","nome","idade"})
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class ConsultorioDTO extends RepresentationModel<ConsultorioDTO> implements Serializable{
+public class MedicoDTO extends RepresentationModel<MedicoDTO> implements Serializable{
 	 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	@JsonProperty("id")
-	private long id;
-	@JsonProperty("numeroConsultorio")
-	private String numeroConsultorio;
-	@JsonProperty("dataHoraConsulta")
-	private LocalDateTime dataHoraConsulta;
+	private Long id;
+	@JsonProperty("crm")
+	private String crm;
+	@JsonProperty("nome")
+	private String nome;
+	@JsonProperty("idade")
+	private int idade;
+	
 	private Consulta consulta;
 	
-	public static ConsultorioDTO create(Consultorio consultorio) {
-		return new ModelMapper().map(consultorio, ConsultorioDTO.class);
+	public static MedicoDTO create(Medico medico) {
+		return new ModelMapper().map(medico, MedicoDTO.class);
 	}
-		
-		
-		
 }

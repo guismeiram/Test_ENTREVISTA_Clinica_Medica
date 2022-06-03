@@ -1,52 +1,44 @@
 package br.com.ClinicaMedicaTest.dto;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import br.com.ClinicaMedicaTest.model.Consulta;
 import br.com.ClinicaMedicaTest.model.Consultorio;
-import br.com.ClinicaMedicaTest.model.Pessoa;
+import br.com.ClinicaMedicaTest.model.Medico;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
+@JsonPropertyOrder({"id","nome","quantidade","valor"})
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode
-public class ConsultaDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ConsultaDTO extends RepresentationModel<ConsultaDTO> implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@JsonProperty("id")
 	private long id;
-	private List<Pessoa> pessoa;
-	private List<Consultorio> consultorio;
-	private String nome;
-	private String crm;
-	private LocalDateTime dataHoraConsulta = LocalDateTime.now();
+	@JsonProperty("pessoa")
+	private List<Medico> pessoa = new ArrayList<Medico>();
+	@JsonProperty("consultorio")
+    private List<Consultorio> consultorio = new ArrayList<Consultorio>();
+	@JsonProperty("especialidadeMedica")
 	private String especialidadeMedica;
-	private String numeroConsultorio;
 	
-	public ConsultaDTO(Consulta consulta) {
-		this.id = consulta.getId();
-		this.consultorio = new ArrayList<Consultorio>();
-		this.pessoa  = new ArrayList<Pessoa>(); 
-		
-
+	public static ConsultaDTO create(Consulta consulta) {
+		return new ModelMapper().map(consulta, ConsultaDTO.class);
 	}
-	
-	public static Page<ConsultaDTO> converter(Page<Consulta> consultas){
-		return consultas.map(ConsultaDTO::new);
-	}
-
-
-
-	
-
-
-
 }
