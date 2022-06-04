@@ -3,6 +3,4 @@ export interface Medico {
 	crm: string;
 	nome:string;
 	idade: number;
-	consulta:string;
-	links: string
 }

@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ClinicaMedicaTest.dto.MedicoDTO;
+import br.com.ClinicaMedicaTest.model.Medico;
 import br.com.ClinicaMedicaTest.service.MedicoService;
 
 @RestController
@@ -50,15 +51,20 @@ public class MedicoController {
 		this.assembler = assembler;
 	}
 	
+	 	@PostMapping
+	    public ResponseEntity<MedicoDTO> createMedico(@RequestBody MedicoDTO medicoDTO) {
+	        // convert DTO to entity
+	        Medico medicoRequest = modelMapper.map(medicoDTO, Medico.class);
 
+	        Medico medico = medicoService.createMedico(medicoRequest);
+
+	        // convert entity to DTO
+	        MedicoDTO medicoResponse = modelMapper.map(medico, MedicoDTO.class);
+
+	        return new ResponseEntity<MedicoDTO>(medicoResponse, HttpStatus.CREATED);
+	    }
 	
-	@PostMapping(produces = {"application/json","application/xml","application/x-yaml"}, 
-		     consumes = {"application/json","application/xml","application/x-yaml"})
-	public MedicoDTO create(@RequestBody MedicoDTO medicoDTO) {
-		MedicoDTO proDTO = medicoService.create(medicoDTO);
-		proDTO.add(linkTo(methodOn(MedicoController.class).findById(proDTO.getId())).withSelfRel());
-		return proDTO;
-	}
+	
 	
 	@GetMapping(value = "/{id}", produces = {"application/json","application/xml","application/x-yaml"})
 	public MedicoDTO findById(@PathVariable("id")  Long id) {

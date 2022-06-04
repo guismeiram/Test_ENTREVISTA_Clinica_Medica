@@ -23,11 +23,10 @@ public class MedicoService {
 		this.medicoRepository = medicoRepository;
 	}
 
-	public MedicoDTO create(MedicoDTO medicoDTO) {
-		MedicoDTO proDtoRetorno = MedicoDTO.create(medicoRepository.save(Medico.create(medicoDTO)));
-		return proDtoRetorno;
-		
-	}
+	public Medico createMedico(Medico medico) {
+        return medicoRepository.save(medico);
+    }
+	
 	
 	
 	public MedicoDTO findById(Long id) {
