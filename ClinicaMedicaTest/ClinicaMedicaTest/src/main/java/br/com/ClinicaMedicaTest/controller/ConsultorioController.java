@@ -29,7 +29,7 @@ import br.com.ClinicaMedicaTest.dto.MedicoDTO;
 import br.com.ClinicaMedicaTest.service.ConsultorioService;
 
 @RestController
-@RequestMapping("/consultorio")
+@RequestMapping("/api/consultorio")
 public class ConsultorioController {
 	
 	private final ConsultorioService consultorioService;

@@ -8,7 +8,7 @@ import { Medico } from '../models/Medico';
 })
 export class MedicoService {
 
-  private readonly API = '/medico';
+  private readonly API = 'api/medico';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -21,7 +21,8 @@ export class MedicoComponent implements OnInit {
   constructor(private medicoService:MedicoService, public dialog: MatDialog) { 
     //this.medicos = [];
    // this.medicoService = new MedicoService();
-   this.medicos$ = this.medicoService.list().pipe(
+   this.medicos$ = this.medicoService.list()
+   .pipe(
      catchError(error => {
        this.onError('Erro ao carregar medicos.');
        return of([])
@@ -31,12 +32,10 @@ export class MedicoComponent implements OnInit {
 
   }
 
-  onError(errorMsg: string){
+  onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
-        data:{
-          animal: 'panda'
-        }
-    })
+      data: errorMsg
+    });
   }
 
   ngOnInit(): void {
@@ -45,7 +44,5 @@ export class MedicoComponent implements OnInit {
   }
 
 }
-function DialogDataExampleDialog(DialogDataExampleDialog: any, arg1: { data: { animal: string; }; }) {
-  throw new Error('Function not implemented.');
-}
+
 
