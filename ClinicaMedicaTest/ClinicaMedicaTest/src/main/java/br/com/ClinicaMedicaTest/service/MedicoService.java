@@ -3,6 +3,8 @@ package br.com.ClinicaMedicaTest.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.ClinicaMedicaTest.dto.MedicoDTO;
@@ -21,18 +23,6 @@ public class MedicoService {
 		this.medicoRepository = medicoRepository;
 	}
 
-
-
-	public List<Medico> listaMedico(){
-		return medicoRepository.findAll();
-	}
-	
-
-	public Medico listaMedicoUnico(long id){
-		return medicoRepository.findById(id);
-	}
-	
-
 	public MedicoDTO create(MedicoDTO medicoDTO) {
 		MedicoDTO proDtoRetorno = MedicoDTO.create(medicoRepository.save(Medico.create(medicoDTO)));
 		return proDtoRetorno;
@@ -45,4 +35,17 @@ public class MedicoService {
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 		return MedicoDTO.create(entity);
 	}
+
+	public Page<MedicoDTO> findAll(Pageable pageable) {
+		var page = medicoRepository.findAll(pageable);
+		return page.map(this::convertToMedicoDTO);
+	}
+
+	
+	private MedicoDTO convertToMedicoDTO(Medico medico) {
+		return MedicoDTO.create(medico);
+	}
+
+
+	
 }

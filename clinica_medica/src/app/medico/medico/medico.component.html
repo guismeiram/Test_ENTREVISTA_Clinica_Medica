@@ -1,1 +1,38 @@
-<p>medico works!</p>
+<mat-card>
+    <mat-toolbar color="primary">
+        <span>Clinica Medica</span>
+    </mat-toolbar>
+    <div *ngIf="medicos$ | async as medicos; else loading">
+    <table mat-table [dataSource]="medicos" class="mat-elevation-z8 demo-table">
+        <!-- Position Column -->
+        <ng-container matColumnDef="crm">
+            <th mat-header-cell *matHeaderCellDef> CRM</th>
+            <td mat-cell *matCellDef="let crm"> {{crm.position}} 
+                <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+            </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> NOME </th>
+            <td mat-cell *matCellDef="let nome"> {{nome.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="idade">
+            <th mat-header-cell *matHeaderCellDef> IDADE </th>
+            <td mat-cell *matCellDef="let idade"> {{idade.weight}} </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+    <ng-template #loading>
+        <div class="loading-spinner"></div>
+        <mat-progress-spinner></mat-progress-spinner>
+    </ng-template>
+</mat-card>

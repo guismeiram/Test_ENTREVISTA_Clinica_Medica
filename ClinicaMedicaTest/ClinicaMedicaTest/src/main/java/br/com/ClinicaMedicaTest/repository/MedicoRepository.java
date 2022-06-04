@@ -7,6 +7,5 @@ import br.com.ClinicaMedicaTest.model.Medico;
 
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico,Long>{
-	Medico findById(long id);
 
 }

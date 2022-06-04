@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MedicoRoutingModule } from './medico-routing.module';
 import { MedicoComponent } from './medico/medico.component';
+import { AppMaterialModule } from '../shred/app-material/app-material.module';
+
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { MedicoComponent } from './medico/medico.component';
   ],
   imports: [
     CommonModule,
-    MedicoRoutingModule
+    MedicoRoutingModule,
+    AppMaterialModule
+  
   ]
 })
 export class MedicoModule { }
