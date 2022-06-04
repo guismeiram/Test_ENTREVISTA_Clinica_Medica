@@ -14,7 +14,7 @@ export class MedicoComponent implements OnInit {
 
   medicos$: Observable<Medico[]>; 
 
-  displayedColumns = ['crm','nome','idade'];
+  displayedColumns = ['crm','nome','idade', 'consulta', 'links'];
 
   //medicoService:MedicoService;
 

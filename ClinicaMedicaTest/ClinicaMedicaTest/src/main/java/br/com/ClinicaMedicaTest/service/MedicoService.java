@@ -36,9 +36,9 @@ public class MedicoService {
 		return MedicoDTO.create(entity);
 	}
 
-	public Page<MedicoDTO> findAll(Pageable pageable) {
-		var page = medicoRepository.findAll(pageable);
-		return page.map(this::convertToMedicoDTO);
+	public List<Medico> findAll() {
+        return medicoRepository.findAll();
+
 	}
 
 	

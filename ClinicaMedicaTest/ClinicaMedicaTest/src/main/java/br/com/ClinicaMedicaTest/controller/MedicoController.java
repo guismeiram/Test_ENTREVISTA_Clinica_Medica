@@ -3,6 +3,10 @@ package br.com.ClinicaMedicaTest.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,6 +38,9 @@ public class MedicoController {
 	
 	private final MedicoService medicoService;
 	private final PagedResourcesAssembler<MedicoDTO> assembler;
+	
+	 @Autowired
+	 private ModelMapper modelMapper;
 
 	
 	
@@ -60,10 +67,11 @@ public class MedicoController {
 		return medicoVO;
 	}
 	
-	@GetMapping
-	public ResponseEntity<?> findAll(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
-		
-        return ResponseEntity.status(HttpStatus.OK).body(medicoService.findAll(pageable));
-	}
+	 @GetMapping
+	    public List<MedicoDTO> getAllImovels() {
+
+	        return medicoService.findAll().stream().map(post -> modelMapper.map(post, MedicoDTO.class))
+	                .collect(Collectors.toList());
+	    }
 	
 }
