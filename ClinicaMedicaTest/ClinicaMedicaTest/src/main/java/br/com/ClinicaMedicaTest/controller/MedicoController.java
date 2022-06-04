@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
@@ -59,22 +60,10 @@ public class MedicoController {
 		return medicoVO;
 	}
 	
-	@GetMapping(produces = {"application/json","application/xml","application/x-yaml"})
-	public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "limit", defaultValue = "12") int limit,
-			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
+	@GetMapping
+	public ResponseEntity<?> findAll(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
 		
-		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-		
-		Pageable pageable = PageRequest.of(page,limit, Sort.by(sortDirection,"nome"));
-		
-		Page<MedicoDTO> medicos = medicoService.findAll(pageable);
-		medicos.stream()
-				.forEach(p -> p.add(linkTo(methodOn(MedicoController.class).findById(p.getId())).withSelfRel()));
-		
-		PagedModel<EntityModel<MedicoDTO>> pagedModel = assembler.toModel(medicos);
-		
-		return new ResponseEntity<>(pagedModel,HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(medicoService.findAll(pageable));
 	}
 	
 }
