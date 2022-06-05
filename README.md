@@ -5,9 +5,9 @@ O teste é focado em destrinchar conhecimentos em api, e como backend utilizar o
 Teve como maior dificulade a converção da entidade consulta, onde o relacionameto de OnToMany entre classes como Consultorio e Medico, 
 e a conversão de dtos foram complicadissimos. Tembém teve problemas o formato data e hora, tinha erros de converção de serialização e deserialização.
 
-<p>Ferramentas utilizadas Java 11
-IDE Eclipse - SPRING BOOT -Java
-Visual code -Angular</p>
+<p>Ferramentas utilizadas Java 11</p>
+<p>IDE Eclipse - SPRING BOOT -Java</p>
+<p>Visual code - Angular</p>
 
 
 Como baixar o projeto?
