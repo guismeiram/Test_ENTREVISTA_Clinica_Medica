@@ -19,6 +19,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +33,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.ClinicaMedicaTest.dto.MedicoDTO;
 import br.com.ClinicaMedicaTest.model.Medico;
 import br.com.ClinicaMedicaTest.service.MedicoService;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api/medico")
+@CrossOrigin("*")
+@AllArgsConstructor
+
 public class MedicoController {
 	
 	private final MedicoService medicoService;
@@ -43,13 +48,6 @@ public class MedicoController {
 	 @Autowired
 	 private ModelMapper modelMapper;
 
-	
-	
-	@Autowired
-	public MedicoController(MedicoService medicoService, PagedResourcesAssembler<MedicoDTO> assembler) {
-		this.medicoService = medicoService;
-		this.assembler = assembler;
-	}
 	
 	 	@PostMapping
 	    public ResponseEntity<MedicoDTO> createMedico(@RequestBody MedicoDTO medicoDTO) {

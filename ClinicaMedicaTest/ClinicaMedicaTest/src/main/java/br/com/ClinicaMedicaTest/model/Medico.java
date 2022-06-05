@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.modelmapper.ModelMapper;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import br.com.ClinicaMedicaTest.dto.ConsultorioDTO;
@@ -44,10 +45,13 @@ public class Medico implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     private Long id;
 	private String crm;
 	private String nome;
 	private int idade;
+	private String especialidadeMedica;
+
 	
 
 	public static Medico create(MedicoDTO medicoDTO) {

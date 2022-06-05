@@ -18,11 +18,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@JsonPropertyOrder({"id","nome","quantidade","valor"})
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@JsonPropertyOrder({"id","nome","quantidade","valor", "pessoaId", "consultorioId"})
+
 public class ConsultaDTO extends RepresentationModel<ConsultaDTO> implements Serializable{
 	/**
 	 * 
@@ -32,13 +29,51 @@ public class ConsultaDTO extends RepresentationModel<ConsultaDTO> implements Ser
 	@JsonProperty("id")
 	private long id;
 	@JsonProperty("pessoa")
-	private List<Medico> pessoa = new ArrayList<Medico>();
+	private List<Medico> medico = new ArrayList<Medico>();
 	@JsonProperty("consultorio")
     private List<Consultorio> consultorio = new ArrayList<Consultorio>();
-	@JsonProperty("especialidadeMedica")
-	private String especialidadeMedica;
 	
-	public static ConsultaDTO create(Consulta consulta) {
-		return new ModelMapper().map(consulta, ConsultaDTO.class);
+	
+
+	public long getId() {
+		return id;
 	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public List<Medico> getMedico() {
+		return medico;
+	}
+
+
+	public void setMedico(List<Medico> medico) {
+		this.medico = medico;
+	}
+
+
+	public List<Consultorio> getConsultorio() {
+		return consultorio;
+	}
+
+
+	public void setConsultorio(List<Consultorio> consultorio) {
+		this.consultorio = consultorio;
+	}
+
+
+	public ConsultaDTO(Consulta consulta) {
+		this.medico = consulta.getMedico();
+		this.consultorio = consulta.getConsultorio();
+	}
+
+
+	public ConsultaDTO() {
+	}
+	
+	
+	
 }

@@ -12,6 +12,7 @@ import br.com.ClinicaMedicaTest.dto.ConsultorioDTO;
 import br.com.ClinicaMedicaTest.exception.ResourceNotFoundException;
 import br.com.ClinicaMedicaTest.model.Consulta;
 import br.com.ClinicaMedicaTest.model.Consultorio;
+import br.com.ClinicaMedicaTest.model.Medico;
 import br.com.ClinicaMedicaTest.repository.ConsultaRepository;
 
 @Service
@@ -25,27 +26,10 @@ public class ConsultaService {
 		this.consultaRepository = consultaRepository;
 	}
 	
+	 public Consulta createConsulta(Consulta consulta) {
 
-	public ConsultaDTO create(ConsultaDTO consultaDTO) {
-		ConsultaDTO proDtoRetorno = ConsultaDTO.create(consultaRepository.save(Consulta.create(consultaDTO)));
-		return proDtoRetorno;
-		
-	}
-	
-	
-	public ConsultaDTO findById(Long id) {
-		Consulta entity = consultaRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
-		return ConsultaDTO.create(entity);
-	}
-	
-	public Page<ConsultaDTO> findAll(Pageable pageable) {
-		var page = consultaRepository.findAll(pageable);
-		return page.map(this::convertConsultaDTO);
-	}
+	        return consultaRepository.save(consulta);
 
+	    }
 	
-	private ConsultaDTO convertConsultaDTO(Consulta consulta) {
-		return ConsultaDTO.create(consulta);
-	}
 }

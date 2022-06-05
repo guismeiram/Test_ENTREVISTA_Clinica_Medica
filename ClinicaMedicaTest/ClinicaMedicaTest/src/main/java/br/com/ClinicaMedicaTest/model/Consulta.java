@@ -32,11 +32,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @JsonPropertyOrder({"id","pessoa","consultorio","especialidadeMedica"})
-@Getter
-@Setter
+
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "TB_CONSULTA")
@@ -54,15 +52,42 @@ public class Consulta implements Serializable{
 	private List<Medico> medico = new ArrayList<Medico>();
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Consultorio> consultorio = new ArrayList<Consultorio>();
-	private String especialidadeMedica;
-	
+    
 	
 
-	public static Consulta create(ConsultaDTO consultaDTO) {
-		return new ModelMapper().map(consultaDTO, Consulta.class);
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<Medico> getMedico() {
+		return medico;
+	}
+
+	public void setAdicionaMedico(Medico medico) {
+		this.medico.add(medico);
+	}
+
+	public List<Consultorio> getConsultorio() {
+		return consultorio;
+	}
+
+	public void setAdicionaConsultorio(Consultorio consultorio) {
+		this.consultorio.add(consultorio);
 	}
 	
+	
+	public Consulta(Consulta consulta, List<Medico> medico, List<Consultorio> conusltorio) {
+		this.medico  = consulta.getMedico().add(medico);
+		this.consultorio.addAll(consultorio);
+	}
 
+	public Consulta() {
+	}
+	
 
 	
 }

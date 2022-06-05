@@ -3,6 +3,10 @@ package br.com.ClinicaMedicaTest.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,14 +28,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ClinicaMedicaTest.dto.ConsultaDTO;
 import br.com.ClinicaMedicaTest.dto.ConsultorioDTO;
+import br.com.ClinicaMedicaTest.model.Consulta;
+import br.com.ClinicaMedicaTest.model.Consultorio;
+import br.com.ClinicaMedicaTest.model.Medico;
 import br.com.ClinicaMedicaTest.service.ConsultaService;
 
 @RestController
-@RequestMapping("/consulta")
+@RequestMapping("/api/consulta")
 public class ConsultaController {
 	
 	private final ConsultaService consultaService;
 	private final PagedResourcesAssembler<ConsultaDTO> assembler;
+	private ModelMapper mapper;
 
 	
 	@Autowired
@@ -40,40 +48,57 @@ public class ConsultaController {
 		this.assembler = assembler;
 	}
 	
+	 	@PostMapping
+	    //@ResponseStatus(HttpStatus.CREATED)
+	    public ResponseEntity<ConsultaDTO> createConsulta(@RequestBody ConsultaDTO consultaDTO) {
+	 		
+	 		Consulta consultaResp = geraConsultaConsultorio();
+	 		consultaResp = geraConsultaMedico();
 
+	 		consultaDTO = geraConsultaMedicoDTO();
+	 	    consultaDTO = geraConsultaConsultorioDTO();
+	 	    
+		    consultaResp =  mapper.map(consultaDTO, Consulta.class);
+
+		    Consulta consultaPoint = consultaService.createConsulta(consultaResp);
+
+			
+			consultaDTO = mapper.map(consultaPoint, ConsultaDTO.class);
+			
+	 		
+	        return new ResponseEntity<ConsultaDTO>(consultaDTO, HttpStatus.CREATED);	 	
+	        }
 	
-	@PostMapping(produces = {"application/json","application/xml","application/x-yaml"}, 
-		     consumes = {"application/json","application/xml","application/x-yaml"})
-	public ConsultaDTO create(@RequestBody ConsultaDTO consultaDTO) {
-		ConsultaDTO proDTO = consultaService.create(consultaDTO);
-		proDTO.add(linkTo(methodOn(ConsultaController.class).findById(proDTO.getId())).withSelfRel());
-		return proDTO;
-	}
-	
-	@GetMapping(value = "/{id}", produces = {"application/json","application/xml","application/x-yaml"})
-	public ConsultaDTO findById(@PathVariable("id")  Long id) {
-		ConsultaDTO consultorioVO = consultaService.findById(id);
-		consultorioVO.add(linkTo(methodOn(ConsultaController.class).findById(id)).withSelfRel());
-		return consultorioVO;
-	}
-	
-	@GetMapping(produces = {"application/json","application/xml","application/x-yaml"})
-	public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "limit", defaultValue = "12") int limit,
-			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
+	 	private ConsultaDTO geraConsultaConsultorioDTO() {
+	 		List<Consultorio> consultorio = new ArrayList<Consultorio>();
+			ConsultaDTO dto = new ConsultaDTO();
+			dto.setConsultorio(consultorio);
+			
+			return dto;
+		}
 		
-		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-		
-		Pageable pageable = PageRequest.of(page,limit, Sort.by(sortDirection,"nome"));
-		
-		Page<ConsultaDTO> consulta = consultaService.findAll(pageable);
-		
-		consulta.stream()
-				.forEach(p -> p.add(linkTo(methodOn(ConsultaController.class).findById(p.getId())).withSelfRel()));
-		
-		PagedModel<EntityModel<ConsultaDTO>> pagedModel = assembler.toModel(consulta);
-		
-		return new ResponseEntity<>(pagedModel,HttpStatus.OK);
-	}
-	
+		private ConsultaDTO geraConsultaMedicoDTO() {
+			List<Medico> medico = new ArrayList<Medico>();
+			ConsultaDTO dto = new ConsultaDTO();
+			dto.setMedico(medico);
+			
+			return dto;
+		}
+	 	
+	 	private Consulta geraConsultaConsultorio() {
+			
+			Consultorio consultorio = new Consultorio();
+			Consulta consulta = new Consulta();
+			consulta.setAdicionaConsultorio(consultorio);
+			
+			return consulta;
+		}
+
+		private Consulta geraConsultaMedico() {
+			Medico medico = new Medico();
+			Consulta consulta = new Consulta();
+			consulta.setAdicionaMedico(medico);
+			
+			return consulta;
+		}
 }
