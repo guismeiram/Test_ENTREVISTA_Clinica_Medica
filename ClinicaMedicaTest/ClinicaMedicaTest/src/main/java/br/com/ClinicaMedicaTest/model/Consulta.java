@@ -81,7 +81,7 @@ public class Consulta implements Serializable{
 	
 	
 	public Consulta(Consulta consulta, List<Medico> medico, List<Consultorio> conusltorio) {
-		this.medico  = consulta.getMedico().add(medico);
+		this.medico  = consulta.getMedico();
 		this.consultorio.addAll(consultorio);
 	}
 

@@ -1,0 +1,5 @@
+git add .
+git commit -m "mensagem"
+git branch -m main
+git remote set-url origin https://github.com/guismeiram/Test_ENTREVISTA_Clinica_Medica
+git push
