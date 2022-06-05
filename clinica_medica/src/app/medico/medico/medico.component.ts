@@ -14,7 +14,7 @@ export class MedicoComponent implements OnInit {
 
   medicos$: Observable<Medico[]>; 
 
-  displayedColumns = ['crm','nome','idade'];
+  displayedColumns = ['crm','nome','idade', 'create'];
 
   //medicoService:MedicoService;
 
@@ -43,6 +43,9 @@ export class MedicoComponent implements OnInit {
 
   }
 
+  onAdd(){
+    console.log('onAdd');
+  }
 }
 
 

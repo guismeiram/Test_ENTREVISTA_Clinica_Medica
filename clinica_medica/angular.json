@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "clinica_medica"
+  "defaultProject": "clinica_medica",
+  "cli": {
+    "analytics": "1179fe44-eb97-401b-8109-240b80a67f1d"
+  }
 }

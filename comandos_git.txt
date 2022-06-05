@@ -3,3 +3,21 @@ git commit -m "mensagem"
 git branch -m main
 git remote set-url origin https://github.com/guismeiram/Test_ENTREVISTA_Clinica_Medica
 git push
+
+or 
+
+git add .
+git commit -m "mensagem"
+git branch -m main
+git remote add origin https://github.com/guismeiram/Test_ENTREVISTA_Clinica_Medica
+git push -u origin main || push
+
+or 
+
+git init
+git add README.md
+git commit -m "mensagem"
+git branch -M main
+git remote add origin https://github.com/guismeiram/Test_ENTREVISTA_Clinica_Medica
+git push -u origin main
+

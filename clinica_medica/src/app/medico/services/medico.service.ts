@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, first, take, tap } from 'rxjs';
+import { delay, first, tap } from 'rxjs/operators';
 import { Medico } from '../models/Medico';
 
 @Injectable({
@@ -19,4 +19,9 @@ export class MedicoService {
         tap(medicos => console.log(medicos))
       );
   }
+
+  save(record: Medico) {
+    return this.httpClient.post<Medico>(this.API, record).pipe(first());
+  }
+
 }
