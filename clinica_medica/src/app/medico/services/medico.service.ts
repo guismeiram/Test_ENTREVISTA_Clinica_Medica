@@ -15,7 +15,7 @@ export class MedicoService {
   list(){
       return this.httpClient.get<Medico[]>(this.API).pipe(
         first(),
-        delay(5000),
+        //delay(5000),
         tap(medicos => console.log(medicos))
       );
   }

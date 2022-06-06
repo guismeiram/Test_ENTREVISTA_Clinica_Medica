@@ -37,12 +37,13 @@ public class MedicoDTO extends RepresentationModel<MedicoDTO> implements Seriali
 	private Long id;
 	@JsonProperty("crm")
 	private String crm;
+	@JsonProperty("especialidade")
+	private String especialidade;
 	@JsonProperty("nome")
 	private String nome;
 	@JsonProperty("idade")
 	private int idade;
-	@JsonProperty("especialidadeMedica")
-	private String especialidadeMedica;
+	
 	private Consulta consulta;
 	
 	public static MedicoDTO create(Medico medico) {

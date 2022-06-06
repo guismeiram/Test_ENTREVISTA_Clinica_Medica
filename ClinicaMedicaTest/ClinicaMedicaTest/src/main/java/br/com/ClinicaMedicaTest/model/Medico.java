@@ -3,6 +3,7 @@ package br.com.ClinicaMedicaTest.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,9 +49,9 @@ public class Medico implements Serializable{
     @JsonProperty("id")
     private Long id;
 	private String crm;
+	private String especialidade;
 	private String nome;
 	private int idade;
-	private String especialidadeMedica;
 
 	
 

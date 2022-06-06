@@ -72,7 +72,7 @@ public class MedicoController {
 	}
 	
 	 @GetMapping
-	    public List<MedicoDTO> getAllImovels() {
+	    public List<MedicoDTO> getAllMedicos() {
 
 	        return medicoService.findAll().stream().map(post -> modelMapper.map(post, MedicoDTO.class))
 	                .collect(Collectors.toList());

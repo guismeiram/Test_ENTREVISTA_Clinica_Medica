@@ -6,8 +6,6 @@ import { MedicoComponent } from './medico/medico.component';
 const routes: Routes = [
   { path: '', component: MedicoComponent },
   { path: 'new', component: MedicoFormComponent }
-
-  
 ];
 
 @NgModule({

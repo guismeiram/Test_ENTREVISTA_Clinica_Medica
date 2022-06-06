@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shred/components/error-dialog/error-dialog.component';
 import { Medico } from '../models/Medico';
@@ -14,13 +15,15 @@ export class MedicoComponent implements OnInit {
 
   medicos$: Observable<Medico[]>; 
 
-  displayedColumns = ['crm','nome','idade', 'create'];
+  displayedColumns = ['crm','especialidade','nome','idade', 'actions'];
 
   //medicoService:MedicoService;
 
-  constructor(private medicoService:MedicoService, public dialog: MatDialog) { 
-    //this.medicos = [];
-   // this.medicoService = new MedicoService();
+  constructor(private medicoService:MedicoService,  
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute) { 
+
    this.medicos$ = this.medicoService.list()
    .pipe(
      catchError(error => {
@@ -44,8 +47,10 @@ export class MedicoComponent implements OnInit {
   }
 
   onAdd(){
-    console.log('onAdd');
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
+
+
 }
 
 
