@@ -8,7 +8,7 @@ e a conversão de dtos foram complicadissimos. Tembém teve problemas o formato 
 <center><b>Ferramentas utilizadas:</b></center><br> 
 Java 11<br> 
 IDE Eclipse - SPRING BOOT -Java<br> 
-Visual code - Angular<br> 
+Visual code - Angular<br><br>
 
 
 Como baixar o projeto?<br> 
