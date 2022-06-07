@@ -31,15 +31,7 @@
             <td mat-cell *matCellDef="let idade"> {{idade.idade}} </td>
         </ng-container>
         
-        <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-        <mat-cell *matCellDef="let row">
-            <button mat-mini-fab color="accent" aria-label="Adicionar Medico">
-                <mat-icon (click)="onAdd()">add</mat-icon>
-            </button>
-        </mat-cell>
-      </ng-container>
+    
       
     
     
@@ -57,4 +49,10 @@
         <mat-progress-spinner></mat-progress-spinner>
     </ng-template>
     
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+                <button mat-mini-fab color="accent" aria-label="Adicionar Medico">
+                    <mat-icon (click)="onAdd()">add</mat-icon>
+                </button>
+          </ng-container>
 </mat-card>
