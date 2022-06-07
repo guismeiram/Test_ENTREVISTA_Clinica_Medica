@@ -55,4 +55,10 @@
                     <mat-icon (click)="onAdd()">add</mat-icon>
                 </button>
           </ng-container>
+
+          <mat-paginator #paginator
+          [pageSize]="25"
+          [pageSizeOptions]="[2,5, 10, 25, 100]"
+          >
+        </mat-paginator>
 </mat-card>

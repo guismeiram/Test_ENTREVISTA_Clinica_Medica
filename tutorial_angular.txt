@@ -1,0 +1,9 @@
+ng new (nomeDoProjeto)
+ng serve
+npm run start
+ng g m medico ( cria um modulo, organização logica do angular )
+ng g m medico --routing(adiciona roteamento)
+ng g c medico/medico (cria um componente)
+ng g interface consultorio/model/consultorio(cria uma interface, com o nome de consultorio
+ng g s consultorio/services/consultorio(logica de negocio)
+
