@@ -32,4 +32,17 @@
         <div class="loading-spinner"></div>
         <mat-progress-spinner></mat-progress-spinner>
     </ng-template>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <button mat-mini-fab color="accent" aria-label="Adicionar Medico">
+            <mat-icon (click)="onAdd()">add</mat-icon>
+        </button>
+  </ng-container>
+
+  <mat-paginator #paginator
+  [pageSize]="25"
+  [pageSizeOptions]="[2,5, 10, 25, 100]"
+  >
+</mat-paginator>
 </mat-card>
