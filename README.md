@@ -11,11 +11,11 @@ IDE Eclipse - SPRING BOOT -Java<br>
 Visual code - Angular<br><br>
 
 
-Como baixar o projeto?<br> 
+<b>Como baixar o projeto?</b><br> 
 
 git clone https://github.com/guismeiram/Test_ENTREVISTA_Clinica_Medica
 
-Como testar o projeto?<br>
+<b>Como testar o projeto?</b><br>
 
 Para testar este projeto backend utilizar comando: <b>mvn spring-boot:run</b><br>
 Para testar o frontend é necessario utilizar: <b>npm run start</b>
