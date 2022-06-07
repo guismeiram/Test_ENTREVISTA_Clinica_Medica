@@ -15,7 +15,7 @@ Como baixar o projeto?<br>
 
 git clone https://github.com/guismeiram/Test_ENTREVISTA_Clinica_Medica
 
-Para testar este projeto backend utilizar comando: mvn spring-boot:run<br>
-Para testar o frontend é necessario utilizar: npm run start
+Para testar este projeto backend utilizar comando: <b>mvn spring-boot:run</b><br>
+Para testar o frontend é necessario utilizar: <b>npm run start</b>
 
 
