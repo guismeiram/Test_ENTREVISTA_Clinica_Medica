@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import org.modelmapper.ModelMapper;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import br.com.ClinicaMedicaTest.dto.ConsultaDTO;
@@ -31,10 +32,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@JsonPropertyOrder({"id","pessoa","consultorio","especialidadeMedica"})
+@JsonPropertyOrder({"id","pessoa","consultorio"})
 
+@Getter
+@Setter
 @ToString
-
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "TB_CONSULTA")
@@ -55,39 +57,7 @@ public class Consulta implements Serializable{
     
 	
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public List<Medico> getMedico() {
-		return medico;
-	}
-
-	public void setAdicionaMedico(Medico medico) {
-		this.medico.add(medico);
-	}
-
-	public List<Consultorio> getConsultorio() {
-		return consultorio;
-	}
-
-	public void setAdicionaConsultorio(Consultorio consultorio) {
-		this.consultorio.add(consultorio);
-	}
-	
-	
-	public Consulta(Consulta consulta, List<Medico> medico, List<Consultorio> conusltorio) {
-		this.medico  = consulta.getMedico();
-		this.consultorio.addAll(consultorio);
-	}
-
-	public Consulta() {
-	}
-	
 
 	
 }

@@ -54,9 +54,6 @@ public class Consultorio implements Serializable{
     private List<Medico> medico = new ArrayList<Medico>();
 
 	
-	public static Consultorio create(ConsultorioDTO consultorioDTO) {
-		return new ModelMapper().map(consultorioDTO, Consultorio.class);
-	}
 
 	
 	

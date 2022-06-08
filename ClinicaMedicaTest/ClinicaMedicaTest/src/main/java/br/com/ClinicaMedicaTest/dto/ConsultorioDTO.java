@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import br.com.ClinicaMedicaTest.model.Consulta;
 import br.com.ClinicaMedicaTest.model.Consultorio;
+import br.com.ClinicaMedicaTest.model.Medico;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,14 +20,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@JsonPropertyOrder({"id","numeroConsultorio","dataHoraConsulta"})
+@JsonPropertyOrder({"id","numero","data_hora","medico"})
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class ConsultorioDTO extends RepresentationModel<ConsultorioDTO> implements Serializable{
+public class ConsultorioDTO  implements Serializable{
 	 /**
 	 * 
 	 */
@@ -34,16 +35,14 @@ public class ConsultorioDTO extends RepresentationModel<ConsultorioDTO> implemen
 	
 	@JsonProperty("id")
 	private long id;
-	@JsonProperty("numeroConsultorio")
+	@JsonProperty("numero")
 	private String numero;
-	@JsonProperty("dataHoraConsulta")
+	@JsonProperty("data_hora")
 	private LocalDateTime data_hora;
-	private Consulta consulta;
+	@JsonProperty("medico")
+	private Medico medico;
 	
-	public static ConsultorioDTO create(Consultorio consultorio) {
-		return new ModelMapper().map(consultorio, ConsultorioDTO.class);
-	}
-		
+
 		
 		
 }

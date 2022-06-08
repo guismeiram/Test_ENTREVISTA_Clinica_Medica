@@ -55,9 +55,6 @@ public class Medico implements Serializable{
 
 	
 
-	public static Medico create(MedicoDTO medicoDTO) {
-		return new ModelMapper().map(medicoDTO, Medico.class);
-	}
 	
 	
 	

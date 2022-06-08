@@ -29,11 +29,7 @@ public class MedicoService {
 	
 	
 	
-	public MedicoDTO findById(Long id) {
-		Medico entity = medicoRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
-		return MedicoDTO.create(entity);
-	}
+	
 
 	public List<Medico> findAll() {
         return medicoRepository.findAll();
@@ -41,9 +37,7 @@ public class MedicoService {
 	}
 
 	
-	private MedicoDTO convertToMedicoDTO(Medico medico) {
-		return MedicoDTO.create(medico);
-	}
+	
 
 
 	

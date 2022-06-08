@@ -43,7 +43,6 @@ import lombok.AllArgsConstructor;
 public class MedicoController {
 	
 	private final MedicoService medicoService;
-	private final PagedResourcesAssembler<MedicoDTO> assembler;
 	
 	 @Autowired
 	 private ModelMapper modelMapper;
@@ -64,12 +63,7 @@ public class MedicoController {
 	
 	
 	
-	@GetMapping(value = "/{id}", produces = {"application/json","application/xml","application/x-yaml"})
-	public MedicoDTO findById(@PathVariable("id")  Long id) {
-		MedicoDTO medicoVO = medicoService.findById(id);
-		medicoVO.add(linkTo(methodOn(MedicoController.class).findById(id)).withSelfRel());
-		return medicoVO;
-	}
+	
 	
 	 @GetMapping
 	    public List<MedicoDTO> getAllMedicos() {

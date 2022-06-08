@@ -27,7 +27,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class MedicoDTO extends RepresentationModel<MedicoDTO> implements Serializable{
+public class MedicoDTO  implements Serializable{
 	 /**
 	 * 
 	 */
@@ -44,9 +44,6 @@ public class MedicoDTO extends RepresentationModel<MedicoDTO> implements Seriali
 	@JsonProperty("idade")
 	private int idade;
 	
-	private Consulta consulta;
 	
-	public static MedicoDTO create(Medico medico) {
-		return new ModelMapper().map(medico, MedicoDTO.class);
-	}
+
 }
