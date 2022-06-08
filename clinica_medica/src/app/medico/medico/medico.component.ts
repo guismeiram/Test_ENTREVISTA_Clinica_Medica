@@ -46,7 +46,7 @@ export class MedicoComponent implements OnInit {
 
   }
 
-  filterData($event : any){
+   filterData($event : any){
     this.dataSource.filter = $event.target.value;
   }
   onError(errorMsg: string) {

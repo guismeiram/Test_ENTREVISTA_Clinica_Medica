@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@JsonPropertyOrder({"id","numeroConusltorio", "dataHoraConsulta"})
+@JsonPropertyOrder({"id","numero", "data_hora"})
 @Getter
 @Setter
 @ToString
@@ -48,8 +48,8 @@ public class Consultorio implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-	private String numeroConsultorio;
-	private LocalDateTime dataHoraConsulta;
+	private String numero;
+	private LocalDateTime data_hora;
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<Medico> medico = new ArrayList<Medico>();
 

@@ -3,6 +3,10 @@ package br.com.ClinicaMedicaTest.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ClinicaMedicaTest.dto.ConsultorioDTO;
 import br.com.ClinicaMedicaTest.dto.MedicoDTO;
+import br.com.ClinicaMedicaTest.model.Consultorio;
+import br.com.ClinicaMedicaTest.model.Medico;
 import br.com.ClinicaMedicaTest.service.ConsultorioService;
 
 @RestController
@@ -34,7 +40,7 @@ public class ConsultorioController {
 	
 	private final ConsultorioService consultorioService;
 	private final PagedResourcesAssembler<ConsultorioDTO> assembler;
-
+	
 	
 	@Autowired
 	public ConsultorioController(ConsultorioService consultorioService, PagedResourcesAssembler<ConsultorioDTO> assembler) {
@@ -43,39 +49,29 @@ public class ConsultorioController {
 	}
 	
 
+	 @Autowired
+	 private ModelMapper modelMapper;
+
 	
-	@PostMapping(produces = {"application/json","application/xml","application/x-yaml"}, 
-		     consumes = {"application/json","application/xml","application/x-yaml"})
-	public ConsultorioDTO create(@RequestBody ConsultorioDTO consultorioDTO) {
-		ConsultorioDTO proDTO = consultorioService.create(consultorioDTO);
-		proDTO.add(linkTo(methodOn(ConsultorioController.class).findById(proDTO.getId())).withSelfRel());
-		return proDTO;
-	}
+	 	@PostMapping
+	    public ResponseEntity<ConsultorioDTO> createConsultorio(@RequestBody ConsultorioDTO consultorioDTO) {
+	        // convert DTO to entity
+	        Consultorio consultorioRequest = modelMapper.map(consultorioDTO, Consultorio.class);
+
+	        Consultorio consultorio = consultorioService.createConsultorio(consultorioRequest);
+
+	        // convert entity to DTO
+	        ConsultorioDTO consultorioResponse = modelMapper.map(consultorio, ConsultorioDTO.class);
+
+	        return new ResponseEntity<ConsultorioDTO>(consultorioResponse, HttpStatus.CREATED);
+	    }
 	
-	@GetMapping(value = "/{id}", produces = {"application/json","application/xml","application/x-yaml"})
-	public ConsultorioDTO findById(@PathVariable("id")  Long id) {
-		ConsultorioDTO consultorioVO = consultorioService.findById(id);
-		consultorioVO.add(linkTo(methodOn(ConsultorioController.class).findById(id)).withSelfRel());
-		return consultorioVO;
-	}
+	 @GetMapping
+	    public List<ConsultorioDTO> getAllMedicos() {
+
+	        return consultorioService.findAll().stream().map(post -> modelMapper.map(post, ConsultorioDTO.class))
+	                .collect(Collectors.toList());
+	    }
 	
-	@GetMapping(produces = {"application/json","application/xml","application/x-yaml"})
-	public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "limit", defaultValue = "12") int limit,
-			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
-		
-		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-		
-		Pageable pageable = PageRequest.of(page,limit, Sort.by(sortDirection,"nome"));
-		
-		Page<ConsultorioDTO> consultorio = consultorioService.findAll(pageable);
-		
-		consultorio.stream()
-				.forEach(p -> p.add(linkTo(methodOn(ConsultorioController.class).findById(p.getId())).withSelfRel()));
-		
-		PagedModel<EntityModel<ConsultorioDTO>> pagedModel = assembler.toModel(consultorio);
-		
-		return new ResponseEntity<>(pagedModel,HttpStatus.OK);
-	}
 	
 }

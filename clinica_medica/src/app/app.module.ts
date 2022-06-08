@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
+import { ConsultorioModule } from './consultorio/consultorio.module';
+import { MedicoModule } from './medico/medico.module';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    ConsultorioModule,
+    MedicoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

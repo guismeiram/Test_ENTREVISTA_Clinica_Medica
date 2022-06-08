@@ -1,19 +1,14 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { ConsultorioComponent } from './consultorio/consultorio/consultorio.component';
+import { MedicoComponent } from './medico/medico/medico.component';
 
 const routes: Routes = [
-  {   path: '', pathMatch: 'full', redirectTo: 'medico'},
-  {   path: '', pathMatch: 'full', redirectTo: 'consultorio'},
-  { 
-    path: 'medico',
-    loadChildren: () => import('./medico/medico.module').then(m => m.MedicoModule)
-  },
-  { 
-    path: 'consultorio',
-    loadChildren: () => import('./consultorio/consultorio.module').then(m => m.ConsultorioModule)
-  }
-
+  { path: 'medico', redirectTo: 'medico', pathMatch: 'full'},
+  { path: 'consultorio', redirectTo: 'consultorio', pathMatch: 'full'}
 ];
+//  { path: '', pathMatch: 'full', redirectTo: 'courses' },
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

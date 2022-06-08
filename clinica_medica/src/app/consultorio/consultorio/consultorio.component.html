@@ -15,7 +15,7 @@
         </ng-container>
     
         <ng-container matColumnDef="data_hora">
-            <th mat-header-cell *matHeaderCellDef> ESPECIALIDADE</th>
+            <th mat-header-cell *matHeaderCellDef> DATA E HORA</th>
             <td mat-cell *matCellDef="let data_hora"> {{data_hora.data_hora}} </td>
         </ng-container>
  
@@ -33,6 +33,8 @@
         <mat-progress-spinner></mat-progress-spinner>
     </ng-template>
 
+    <br>
+    <br>
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
         <button mat-mini-fab color="accent" aria-label="Adicionar Medico">

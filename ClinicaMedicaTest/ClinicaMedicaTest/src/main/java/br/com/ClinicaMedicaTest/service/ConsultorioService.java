@@ -25,30 +25,14 @@ public class ConsultorioService {
 		this.consultorioRepository = consultorioRepository;
 	}
 	
+	public List<Consultorio> findAll() {
+        return consultorioRepository.findAll();
 
-	public ConsultorioDTO create(ConsultorioDTO consultorioDTO) {
-		ConsultorioDTO proDtoRetorno = ConsultorioDTO.create(consultorioRepository.save(Consultorio.create(consultorioDTO)));
-		return proDtoRetorno;
-		
 	}
 	
-	
-	public ConsultorioDTO findById(Long id) {
-		Consultorio entity = consultorioRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
-		return ConsultorioDTO.create(entity);
-	}
-	
-	
-	public Page<ConsultorioDTO> findAll(Pageable pageable) {
-		var page = consultorioRepository.findAll(pageable);
-		return page.map(this::convertConsultorioDTO);
-	}
-
-	
-	private ConsultorioDTO convertConsultorioDTO(Consultorio consultorio) {
-		return ConsultorioDTO.create(consultorio);
-	}
+	public Consultorio createConsultorio(Consultorio consultorio) {
+        return consultorioRepository.save(consultorio);
+    }
 	
 	
 	

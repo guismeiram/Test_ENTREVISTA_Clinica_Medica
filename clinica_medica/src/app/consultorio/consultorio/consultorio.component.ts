@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
+import { MedicoComponent } from 'src/app/medico/medico/medico.component';
 import { ErrorDialogComponent } from 'src/app/shred/components/error-dialog/error-dialog.component';
 import { Consultorio } from '../model/consultorio';
 import { ConsultorioService } from '../services/consultorio.service';
@@ -13,9 +14,9 @@ import { ConsultorioService } from '../services/consultorio.service';
 })
 export class ConsultorioComponent implements OnInit {
 
-  consultorios$: Observable<Consultorio[]> | undefined; 
+  consultorios$: Observable<Consultorio[]>; 
 
-  displayedColumns = ['numero_consultorio', 'data_hora'];
+  displayedColumns = ['numero', 'data_hora'];
 
   constructor(private consultorioService:ConsultorioService,  
     public dialog: MatDialog,

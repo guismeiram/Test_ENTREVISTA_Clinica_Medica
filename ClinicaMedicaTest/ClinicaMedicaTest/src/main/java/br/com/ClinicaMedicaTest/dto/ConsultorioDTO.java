@@ -35,9 +35,9 @@ public class ConsultorioDTO extends RepresentationModel<ConsultorioDTO> implemen
 	@JsonProperty("id")
 	private long id;
 	@JsonProperty("numeroConsultorio")
-	private String numeroConsultorio;
+	private String numero;
 	@JsonProperty("dataHoraConsulta")
-	private LocalDateTime dataHoraConsulta;
+	private LocalDateTime data_hora;
 	private Consulta consulta;
 	
 	public static ConsultorioDTO create(Consultorio consultorio) {
