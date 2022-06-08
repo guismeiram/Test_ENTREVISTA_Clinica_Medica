@@ -2,8 +2,7 @@
 
 O teste é focado em destrinchar conhecimentos em api, e como backend utilizar o spring boot e frontend utilizar o angular.<br> 
 
-Teve como maior dificulade a converção da entidade consulta, onde o relacionameto de OnToMany entre classes como Consultorio e Medico, 
-e a conversão de dtos foram complicadissimos. Tembém teve problemas o formato data e hora, tinha erros de converção de serialização e deserialização.<br> 
+Teve como maior dificulade a converção da entidade consulta, onde o relacionameto de OnToMany entre classes como Consultorio e Medico, e também uma classe Consulta onde a relacionamento OnToMany entre Consulta, Consultorio e Medico e a conversão de dtos foram complicadissimas. Tembém teve problemas o formato data e hora, onde tinha erros de converção de serialização e deserialização.<br> 
 
 <center><b>Ferramentas utilizadas:</b></center><br> 
 Java 11<br> 
