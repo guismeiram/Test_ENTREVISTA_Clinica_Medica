@@ -39,8 +39,7 @@ public class ConsultorioDTO  implements Serializable{
 	private String numero;
 	@JsonProperty("data_hora")
 	private LocalDateTime data_hora;
-	@JsonProperty("medico")
-	private Medico medico;
+	
 	
 
 		

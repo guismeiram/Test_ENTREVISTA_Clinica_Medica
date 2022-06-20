@@ -47,15 +47,17 @@ public class Consultorio implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 	private String numero;
 	private LocalDateTime data_hora;
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Medico> medico = new ArrayList<Medico>();
+
+	@ManyToOne
+    private Consulta consulta;
 
 	
-
-	
-	
+	public long getAllId() {
+		return (id.equals(0) ? null : id);
+    	
+    }
 	
 }

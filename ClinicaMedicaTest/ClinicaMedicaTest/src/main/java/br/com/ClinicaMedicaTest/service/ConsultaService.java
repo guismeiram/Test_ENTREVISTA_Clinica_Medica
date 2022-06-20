@@ -2,6 +2,8 @@ package br.com.ClinicaMedicaTest.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,10 +28,16 @@ public class ConsultaService {
 		this.consultaRepository = consultaRepository;
 	}
 	
+	@Transactional
 	 public Consulta createConsulta(Consulta consulta) {
 
 	        return consultaRepository.save(consulta);
 
 	    }
+
+	public Consulta getById(Long id) {
+		// TODO Auto-generated method stub
+		return consultaRepository.getById(id);
+	}
 	
 }
