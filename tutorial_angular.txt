@@ -6,4 +6,4 @@ ng g m medico --routing(adiciona roteamento)
 ng g c medico/medico (cria um componente)
 ng g interface consultorio/model/consultorio(cria uma interface, com o nome de consultorio
 ng g s consultorio/services/consultorio(logica de negocio)
-
+npm i(instalação de dependencia)

@@ -6,7 +6,9 @@ import { MedicoComponent } from './medico/medico/medico.component';
 
 const routes: Routes = [
   { path: 'medico', redirectTo: 'medico', pathMatch: 'full'},
-  { path: 'consultorio', redirectTo: 'consultorio', pathMatch: 'full'}
+  { path: 'consultorio', redirectTo: 'consultorio', pathMatch: 'full'},
+  { path: 'consulta', redirectTo: 'consulta', pathMatch: 'full'}
+
 ];
 //  { path: '', pathMatch: 'full', redirectTo: 'courses' },
 
