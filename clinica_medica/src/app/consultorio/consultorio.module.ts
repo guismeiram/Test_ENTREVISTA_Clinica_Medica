@@ -6,11 +6,13 @@ import { ConsultorioComponent } from './consultorio/consultorio.component';
 import { AppMaterialModule } from '../shred/app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShredModule } from '../shred/shred.module';
+import { ConsultorioFormComponent } from './consultorio-form/consultorio-form.component';
 
 
 @NgModule({
   declarations: [
-    ConsultorioComponent
+    ConsultorioComponent,
+    ConsultorioFormComponent
   ],
   imports: [
     CommonModule,

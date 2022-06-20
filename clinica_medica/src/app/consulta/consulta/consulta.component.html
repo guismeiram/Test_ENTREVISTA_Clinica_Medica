@@ -5,40 +5,40 @@
         <span>Painel de Medicos</span>
     </mat-toolbar>
     
-    <div *ngIf="consulta$ | async as medicos; else loading">
-    <table mat-table [dataSource]="medicos" class="mat-elevation-z8 demo-table">
+    <div *ngIf="consulta$ | async as consultas else loading">
+    <table mat-table [dataSource]="consultas" class="mat-elevation-z8 demo-table">
         <!-- Position Column -->
         
         <ng-container matColumnDef="crm">
             <th mat-header-cell *matHeaderCellDef> CRM </th>
-            <td mat-cell *matCellDef="let consulta"> {{consulta.consultorio.}</td>
+            <td mat-cell *matCellDef="let consulta"> {{consulta.medico[].crm}</td>
         </ng-container>
     
         <ng-container matColumnDef="especialidade">
             <th mat-header-cell *matHeaderCellDef> ESPECIALIDADE</th>
-            <td mat-cell *matCellDef="let especialidade"> {{especialidade.especialidade}} </td>
+            <td mat-cell *matCellDef="let consulta"> {{consulta.medico.especialidade}} </td>
         </ng-container>
    
         <!-- Name Column -->
         <ng-container matColumnDef="nome">
             <th mat-header-cell *matHeaderCellDef> NOME </th>
-            <td mat-cell *matCellDef="let nome"> {{nome.nome}} </td>
+            <td mat-cell *matCellDef="let consulta"> {{consulta.medico.nome}} </td>
         </ng-container>
     
         <!-- Weight Column -->
         <ng-container matColumnDef="idade">
             <th mat-header-cell *matHeaderCellDef> IDADE </th>
-            <td mat-cell *matCellDef="let idade"> {{idade.idade}} </td>
+            <td mat-cell *matCellDef="let consulta"> {{consulta.medico.idade}} </td>
         </ng-container>
         
         <ng-container matColumnDef="numero">
             <th mat-header-cell *matHeaderCellDef> NUMERO</th>
-            <td mat-cell *matCellDef="let numero"> {{numero.numero}}</td>
+            <td mat-cell *matCellDef="let consulta"> {{consulta.consultorios.numero}}</td>
         </ng-container>
     
         <ng-container matColumnDef="data_hora">
             <th mat-header-cell *matHeaderCellDef> DATA E HORA</th>
-            <td mat-cell *matCellDef="let data_hora"> {{data_hora.data_hora}} </td>
+            <td mat-cell *matCellDef="let consulta"> {{consulta.consultorios.data_hora} </td>
         </ng-container>
     
       

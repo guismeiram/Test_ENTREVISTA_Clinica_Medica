@@ -5,6 +5,7 @@ import { AppMaterialModule } from '../shred/app-material/app-material.module';
 import { ShredModule } from '../shred/shred.module';
 import { ConsultaRoutingModule } from './consulta-routing.module';
 import { ConsultaComponent } from './consulta/consulta.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ConsultaComponent } from './consulta/consulta.component';
     CommonModule,
     ConsultaRoutingModule,
     AppMaterialModule,
-    ShredModule
+    ShredModule,
+    ReactiveFormsModule
   ]
 })
 export class ConsultaModule { }

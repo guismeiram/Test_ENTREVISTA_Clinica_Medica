@@ -18,7 +18,7 @@ export class ConsultaComponent implements OnInit {
 
   consulta$: Observable<Consulta[]>; 
 
-  displayedColumns = ['paciente', 'medico'];
+  displayedColumns = ['paciente[]', 'medico[]'];
 
   dataSource!:MatTableDataSource<any>;
 

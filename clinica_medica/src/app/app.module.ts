@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultorioModule } from './consultorio/consultorio.module';
 import { MedicoModule } from './medico/medico.module';
+import { ConsultaModule } from './consulta/consulta.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MedicoModule } from './medico/medico.module';
     MatToolbarModule,
     HttpClientModule,
     ConsultorioModule,
-    MedicoModule
+    MedicoModule,
+    ConsultaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
